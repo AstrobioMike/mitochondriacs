@@ -5,7 +5,7 @@
 - It was missing the strain ID for most plants and some other stuff  
 - Richard noted this info is often in an "ecotype" column for plants  
 
-This was quickly hacking together an automated way of getting the unique values for all samples from the strain or ecotype column for each GLDS that had one or both of those columnes.  
+This repo holds what I hacked together to automate getting the unique values for "strain" or "ecotype" for all samples for each GLDS that had either one or both of those columns in its Study table. The result table from this is "Strain-info.tsv" above, and I added the info as a new column to the [master spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo) called "strain/ecotype listed".   
 
 # GENERAL PROCESS FOR EACH GLDS  
 
