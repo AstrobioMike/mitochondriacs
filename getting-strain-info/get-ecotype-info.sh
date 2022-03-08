@@ -28,20 +28,22 @@ fi
 
 info_dir="GLDS-study-info"
 
-
 for ID in $(cat ${1}); do
 
     printf "\n Doing: ${ID}\n\n"
 
     ./get-ISA.py -g ${ID}
 
-    unzip -j -qq ${ID}-ISA.zip
+    unzip -j -qq -o ${ID}-ISA.zip
 
     # alot of them have this file, so removing if so
     rm -rf .DS_store
 
     # we want the study table, so removing assay and investigation ones
-    rm a_* i_*
+    rm -rf a_* i_*
+
+    # some pull versions like this too
+    rm -rf ._a_* ._i_* ._s_*
 
     # making sure there is only one we are going to try to pull from
     num_potential_files=$(ls s_* | wc -l)
@@ -59,6 +61,9 @@ for ID in $(cat ${1}); do
     study_info_tab=${ID}-study-info.tsv
     mv s_* ${study_info_tab}
 
+    # just as easy to run dos2unix as it is to check, so just running
+    dos2unix -q ${study_info_tab}
+
     # getting unique strains listed (whether in strain or ecotype column)
     if grep -q "Ecotype" ${study_info_tab} ; then
 
@@ -70,7 +75,7 @@ for ID in $(cat ${1}); do
         if [ ${num_potential_cols} != 1 ]; then
             unique_ecotypes_listed="Not clear"
         else
-            unique_ecotypes_listed=$(cut -f ${ecotype_col} ${study_info_tab} | tail -n +2 | tr -d '"' | sort -u | tr "\n" "|" | sed 's/|$//' | sed 's/|/ | /g')
+            unique_ecotypes_listed=$(cut -f ${ecotype_col} ${study_info_tab} | tail -n +2 | tr -d '"' | sort -u | sed '/^$/d' | tr "\n" "|" | sed 's/|$//' | sed 's/|/ | /g')
         fi
 
     else
@@ -89,7 +94,7 @@ for ID in $(cat ${1}); do
         if [ ${num_potential_cols} != 1 ]; then
             unique_strains_listed="Not clear"
         else
-            unique_strains_listed=$(cut -f ${strain_col} ${study_info_tab} | tail -n +2 | tr -d '"' | sort -u | tr "\n" "|" | sed 's/|$//' | sed 's/|/ | /g')
+            unique_strains_listed=$(cut -f ${strain_col} ${study_info_tab} | tail -n +2 | tr -d '"' | sort -u | sed '/^$/d' | tr "\n" "|" | sed 's/|$//' | sed 's/|/ | /g')
         fi
 
     else
@@ -128,9 +133,18 @@ for ID in $(cat ${1}); do
 
     fi
 
+    # removing leading spaces if any
+    strains_listed=$(echo ${strains_listed} | sed 's/^ *//')
+
+    # writing out to summary table
     echo -e "${ID}\t${strains_listed}" >> ${output_file}
 
     mkdir -p ${info_dir}
     mv ${study_info_tab} ${info_dir}
 
 done
+
+# if any are empty (which can happen if the encoding was strange, e.g. I know is happening with GLDS-67),
+# then we are setting them to "Not clear"
+awk -F $'\t' ' BEGIN { OFS=FS } { if ( $2 == "" ) { print $1,"Not clear" } else { print $0 } } ' ${output_file} > ${output_file}.tmp
+mv ${output_file}.tmp ${output_file}

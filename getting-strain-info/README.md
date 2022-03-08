@@ -12,7 +12,10 @@ This was quickly hacking together an automated way of getting the unique values 
 - get the ISA file
 - get-ecotype
 - get the study table
-- get the unique values from either the strain or ecotype column (if they exist, reports "None found" if not, reports "Not clear" if multiple exist)
+- get the unique values from either the strain or ecotype column if they exist
+  - multiple are linked with pipes (' | ')
+  - reports "None found" if not found
+  - reports "Not clear" if multiple exist or if something went wrong (like with file format)
 - append those to a building table ("Strain-tab.tsv" by default)
 - store study info table in subdirectory
 
