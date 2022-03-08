@@ -17,7 +17,7 @@ This was quickly hacking together an automated way of getting the unique values 
   - reports "None found" if not found
   - reports "Not clear" if multiple exist or if something went wrong (like with file format)
 - append those to a building table ("Strain-tab.tsv" by default)
-- store study info table in subdirectory
+- store individual study info tables in a subdirectory, not included here due to size
 
 
 # WHAT I DID  
