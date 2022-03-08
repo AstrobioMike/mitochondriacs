@@ -5,7 +5,7 @@ if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
 
     printf "\n  Gets strain info from the ecotype or strain column of all GLDS IDs provided in\n"
     printf "  a single-column file given to positional argument 1. Builds table with GLDS ID and\n"
-    printf "  unique ecotype/strain values onto positional argument 2 (or default 'Strain-tab.tsv')\n"
+    printf "  unique ecotype/strain values onto positional argument 2 (or default 'GLDS-strain-info.tsv')\n"
     printf "  It will put finished study tables into a subdirectory called 'GLDS-study-info/'.\n\n"
     printf "  Ex. usage: bash get-ecotype-info.sh target-GLDS-IDs.txt\n\n"
     exit
