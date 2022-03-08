@@ -1,11 +1,11 @@
 
 # PURPOSE  
 
-- Afshin got a master spreadsheet from Sam: https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo  
-- It was missing the strain ID for most plants (and other stuff)  
+- Afshin got a master spreadsheet of GLDS info from Sam: https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo  
+- It was missing the strain ID for most plants and some other stuff  
 - Richard noted this info is often in an "ecotype" column for plants  
 
-This was quickly hacking together an automated way of getting the unique values for all samples from the strain or ecotype column for each GLDS that had one.  
+This was quickly hacking together an automated way of getting the unique values for all samples from the strain or ecotype column for each GLDS that had one or both of those columnes.  
 
 # GENERAL PROCESS FOR EACH GLDS  
 
@@ -21,9 +21,9 @@ This was quickly hacking together an automated way of getting the unique values 
 
 # WHAT I DID  
 
-Sorted the master spreadsheet (https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo) by column A, to get all target GLDS IDs, put them into "target-GLDS-IDs.txt".
+Sorted the [master spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo) by column A ("GLDS"), took these GLDS IDs and put them into "target-GLDS-IDs.txt".
 
-Running:
+Running the code above:
 ```bash
 bash get-strain-info.sh target-GLDS-IDs.txt
 ```
@@ -34,17 +34,17 @@ When done, the produced "Strain-tab.tsv" looks like this:
 head Strain-tab.tsv | column -ts $'\t' | sed 's/^/# /'
 ```
 ```
-# GLDS-1    None found
-# GLDS-100  None found
-# GLDS-101  None found
-# GLDS-102  None found
-# GLDS-103  None found
-# GLDS-104  None found
-# GLDS-105  None found
+# GLDS-1    Oregon R
+# GLDS-100  C57BL/6J
+# GLDS-101  C57BL/6J
+# GLDS-102  C57BL/6J
+# GLDS-103  C57BL/6J
+# GLDS-104  C57BL/6J
+# GLDS-105  C57BL/6J
 # GLDS-106  UA159
-# GLDS-107  None found
+# GLDS-107  C57BL/6
 # GLDS-108  C57BL/6CR
 ```
 
-Pasted these columns into the master spreadsheet, double-checked the order was the same, removed newly-pasted GLDS ID column that was used to check.
+I added the second column to the [master spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo) as "strain/ecotype listed". 
 
