@@ -10,7 +10,6 @@ This was quickly hacking together an automated way of getting the unique values 
 # GENERAL PROCESS FOR EACH GLDS  
 
 - get the ISA file
-- get-ecotype
 - get the study table
 - get the unique values from either the strain or ecotype column if they exist
   - multiple are linked with pipes (' | ')
@@ -26,7 +25,7 @@ Sorted the master spreadsheet (https://docs.google.com/spreadsheets/d/1PfNkLWrcs
 
 Running:
 ```bash
-bash get-ecotype-info.sh target-GLDS-IDs.txt
+bash get-strain-info.sh target-GLDS-IDs.txt
 ```
 
 When done, the produced "Strain-tab.tsv" looks like this:

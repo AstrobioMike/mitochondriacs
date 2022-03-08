@@ -65,10 +65,10 @@ for ID in $(cat ${1}); do
     dos2unix -q ${study_info_tab}
 
     # getting unique strains listed (whether in strain or ecotype column)
-    if grep -q "Ecotype" ${study_info_tab} ; then
+    if grep -iq "Ecotype" ${study_info_tab} ; then
 
         ecotype_column_found="yes"
-        ecotype_col=$(head -n 1 ${study_info_tab} | tr "\t" "\n" | cat -n | grep -v "Factor" | grep "Ecotype" | tr -s " " "\t" | cut -f 2)
+        ecotype_col=$(head -n 1 ${study_info_tab} | tr "\t" "\n" | cat -n | grep -v "Factor" | grep -i "Ecotype" | tr -s " " "\t" | cut -f 2)
 
         # checking we only have 1 column as expected, and storing as "Not clear" if not
         num_potential_cols=$(echo ${ecotype_col} | wc -w | sed 's/^ *//' | cut -f 1)
@@ -84,10 +84,10 @@ for ID in $(cat ${1}); do
 
     fi
 
-    if grep -q "Strain" ${study_info_tab} ; then
+    if grep -iq "Strain" ${study_info_tab} ; then
 
         strain_column_found="yes"
-        strain_col=$(head -n 1 ${study_info_tab} | tr "\t" "\n" | cat -n | grep -v "Factor" | grep "Strain" | tr -s " " "\t" | cut -f 2)
+        strain_col=$(head -n 1 ${study_info_tab} | tr "\t" "\n" | cat -n | grep -v "Factor" | grep -i "Strain" | tr -s " " "\t" | cut -f 2)
 
         # checking we only have 1 column as expected, and storing as "Not clear" if not
         num_potential_cols=$(echo ${strain_col} | wc -w | sed 's/^ *//' | cut -f 1)
