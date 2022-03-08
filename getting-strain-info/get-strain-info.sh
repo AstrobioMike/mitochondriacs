@@ -12,7 +12,7 @@ if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
 fi
 
 if [ -z "${2}" ]; then
-    output_file="Strain-tab.tsv"
+    output_file="GLDS-strain-info.tsv"
 fi
 
 # making sure output file doesn't exist already

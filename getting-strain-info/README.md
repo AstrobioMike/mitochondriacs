@@ -5,7 +5,7 @@
 - It was missing the strain ID for most plants and some other stuff  
 - Richard noted this info is often in an "ecotype" column for plants  
 
-This repo holds what I hacked together to automate getting the unique values for "strain" or "ecotype" for all samples for each GLDS that had either one or both of those columns in its Study table. The result table from this is "Strain-info.tsv" above, and I added the info as a new column to the [master spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo) called "strain/ecotype listed".   
+This repo holds what I hacked together to automate getting the unique values for "strain" or "ecotype" for all samples for each GLDS that had either one or both of those columns in its Study table. The result table from this is "GLDS-strain-info.tsv" above, and I added the info as a new column to the [master spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo) called "strain/ecotype listed".   
 
 # GENERAL PROCESS FOR EACH GLDS  
 
@@ -28,10 +28,10 @@ Running the code above:
 bash get-strain-info.sh target-GLDS-IDs.txt
 ```
 
-When done, the produced "Strain-tab.tsv" looks like this:
+When done, the produced "GLDS-strain-info.tsv" looks like this:
 
 ```bash
-head Strain-tab.tsv | column -ts $'\t' | sed 's/^/# /'
+head GLDS-strain-info.tsv | column -ts $'\t' | sed 's/^/# /'
 ```
 ```
 # GLDS-1    Oregon R
