@@ -57,8 +57,8 @@ mamba create -n genelab-utils -c conda-forge -c bioconda -c defaults -c astrobio
 conda activate genelab-utils
 ```
 
+And here running the scripts above with the wanted input GLDS IDs:
 ```bash
-# running script with wanted input GLDS IDs
 bash get-info-for-GLDS-IDs.sh 7-Feb-2023-currently-wanted-GLDS-IDs.txt GL-dataset-info.tsv
 ```
 
