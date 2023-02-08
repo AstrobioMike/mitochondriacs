@@ -60,7 +60,7 @@ conda activate genelab-utils
 ```bash
 # creating starting file with header
 printf "GLDS\tStudy Title\tAssay(s)\tMeasument Type(s)\tOrganism(s)\tFactor(s)\tSex\tAge\tStrain\t\n" > GL-dataset-info.tsv
-for GLDS_ID in $(cat currently-wanted-GLDS-IDs.txt)
+for GLDS_ID in $(cat 7-Feb-2023-currently-wanted-GLDS-IDs.txt)
 do
 
     printf "\nWorking on: ${GLDS_ID}\n"
