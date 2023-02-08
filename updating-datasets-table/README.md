@@ -6,16 +6,12 @@
 
 This repo holds what I hacked together to automate this. It starts with a text file holding all the currently held GLDS IDs from column A in our [spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo).
 
-It starts with a text file of all the GLDS IDs in the current 
-
-The result table from this is "GLDS-strain-info.tsv" above, and I added the info as a new column to the [master spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo) called "strain/ecotype listed".   
 
 # General process
 - get full list of all avalable GLDS IDs and compare it to the list of ones we have to make a list of just the ones we're missing
 - for each one we're missing
-    - get the ISA zip
-    - get the study table from the ISA zip
-    - parse it to create the info we want as closely as possible
+    - get the ISA zip holding associated tables for a given GLDS
+    - parse the tables to get the info we want as closely as possible
 
 
 # Updating on 7-Feb-2023
