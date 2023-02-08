@@ -41,6 +41,13 @@ fi
 
 investigation_table_path=$(ls i_*)
 
+## had a few weird formats for these (GLDS-40, 64, 65, and 68),
+# so checking if it has "ISO-8859" in the `file` output, and converting if so
+file_status=$(file ${investigation_table_path})
+if grep -q "ISO-8859" <( echo ${file_status} ); then
+    iconv -f ISO-8859-2 -t UTF-8 ${investigation_table_path} > t && mv t ${investigation_table_path}
+fi
+
 
 # checking there is only one assay table, what we're pulling should be the same in multiple, so taking one anyway, but reporting
 num_a_prefix_files=$(ls a_* | wc -l | cut -d " " -f 1)
@@ -63,7 +70,7 @@ fi
 
 sample_table_path=$(ls s_* | head -n 1)
 
-python ../parse-ISA-tables.py ${curr_GLDS_ID} ${investigation_table_path} ${assay_table_path} ${sample_table_path} output.tmp
+python ../parse-ISA-tables.py ${curr_GLDS_ID} "${investigation_table_path}" "${assay_table_path}" "${sample_table_path}" output.tmp
 
 cat output.tmp >> ../${2}
 
