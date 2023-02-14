@@ -2,13 +2,13 @@
 # PURPOSE  
 
 - We have this spreadsheet of datasets available from GeneLab: https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo  
-- We want to update it to add on any new ones
+- We want to update it to add on any new or missing ones
 
 This repo holds what I hacked together to automate this. It starts with a text file holding all the currently held GLDS IDs from column A in our [spreadsheet](https://docs.google.com/spreadsheets/d/1PfNkLWrcs-D5Yx9nqNYDHqNygJfk9nhmDW6A0-b_3Zo).
 
 
 # General process
-- get full list of all avalable GLDS IDs and compare it to the list of ones we have to make a list of just the ones we're missing
+- get full list of all avalable GLDS IDs and compare it to the list of ones we currently have to make a list of just the ones we're missing
 - for each one we're missing
     - get the ISA zip holding associated tables for a given GLDS
     - parse the tables to get the info we want as closely as possible
